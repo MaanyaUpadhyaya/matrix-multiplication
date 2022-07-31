@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main()
+{
+    int n,a[100][100],b[100][100],c[100][100],i,j,k;;
+    clock_t start,end;
+    double t;
+    printf("Enter the value of n:\n ");
+    scanf("%d",&n);
+    printf("Enter the elements of matrix A of order nXn:\n");
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<n;j++)
+            scanf("%d",&a[i][j]);
+    }
+    printf("Enter the elements of matrix B of order nXn:\n");
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<n;j++)
+            scanf("%d",&b[i][j]);
+    }
+    start=clock();
+    for(i=0;i<=n-1;i++)
+    {
+        for(j=0;j<=n-1;j++)
+        {
+            c[i][j]=0;
+            for(k=0;k<n;k++)
+                c[i][j]=c[i][j]+a[i][k]*b[k][j];
+        }
+    }
+    end=clock();
+    t=(double)(end-start)/CLOCKS_PER_SEC;
+    printf("the matrix after multiplication is:\n");
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            printf("%d\t",c[i][j]);
+        }
+        printf("\n");
+    }
+    printf("Time taken = %f seconds ",t);
+    return 0;
